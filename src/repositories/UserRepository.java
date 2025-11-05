@@ -2,24 +2,14 @@ package repositories;
 
 import models.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UserRepository {
     private final Map<String, User> users;
-    private static UserRepository instance;
 
-    private UserRepository() {
-        this.users = new HashMap<>();
-    }
-
-    public static  UserRepository getInstance() {
-        if(instance == null) {
-            instance = new UserRepository();
-        }
-        return instance;
+    public UserRepository() {
+        this.users = new ConcurrentHashMap<>();
     }
 
     public User save(User user) {
@@ -27,11 +17,15 @@ public class UserRepository {
         return user;
     }
 
-    public User findById(String userId) {
-        return users.get(userId);
+    public Optional<User> findById(String id) {
+        return Optional.ofNullable(users.get(id));
     }
 
     public List<User> findAll() {
         return new ArrayList<>(users.values());
+    }
+
+    public boolean exists(String id) {
+        return users.containsKey(id);
     }
 }
