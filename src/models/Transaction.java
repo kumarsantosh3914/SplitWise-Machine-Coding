@@ -3,23 +3,23 @@ package models;
 import java.time.LocalDateTime;
 
 public class Transaction {
-    private final User fromUserId;
-    private final User toUserId;
+    private final String fromUserId;
+    private final String toUserId;
     private final double amount;
     private final String groupId;
 
-    public Transaction(User from, User to, Double amount, String groupId) {
+    public Transaction(String from, String to, Double amount, String groupId) {
         this.fromUserId = from;
         this.toUserId = to;
         this.amount = amount;
         this.groupId = groupId;
     }
 
-    public User getFromUserId() {
+    public String getFromUserId() {
         return fromUserId;
     }
 
-    public User getToUserId() {
+    public String getToUserId() {
         return toUserId;
     }
 
