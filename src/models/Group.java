@@ -1,56 +1,60 @@
 package models;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Group {
     private final String groupId;
     private final String groupName;
-    private final List<User> members;
-    private final User createdBy;
-    private final LocalDateTime createdAt;
+    private final Set<String> memberIds;
+    private final String createdBy;
+    private final Date createdAt;
 
-    public Group(String groupId, String groupName, User createdBy) {
-        this.groupId = groupId;
+    public Group(String groupName, String createdBy) {
+        this.groupId = UUID.randomUUID().toString();
         this.groupName = groupName;
-        this.members = new ArrayList<>();
+        this.memberIds = new HashSet<>();
+        this.memberIds.add(createdBy);
         this.createdBy = createdBy;
-        this.createdAt = LocalDateTime.now();
-        this.members.add(createdBy);
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public User getCreatedBy() {
-        return createdBy;
-    }
-
-    public List<User> getMembers() {
-        return members;
-    }
-
-    public String getGroupName() {
-        return groupName;
+        this.createdAt = new Date();
     }
 
     public String getGroupId() {
         return groupId;
     }
 
-    public void addMember(User user) {
-        if(!members.contains(user)) {
-            members.add(user);
-        }
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void removeMember(User user) {
-        members.remove(user);
+    public Set<String> getMemberIds() {
+        return memberIds;
     }
 
-    public boolean isMember(User user) {
-        return members.contains(user);
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void addMember(String userId) {
+        memberIds.add(userId);
+    }
+
+    public void removeMember(String userId) {
+        memberIds.remove(userId);
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "groupId='" + groupId + '\'' +
+                ", groupName='" + groupName + '\'' +
+                ", memberIds=" + memberIds +
+                ", createdBy='" + createdBy + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

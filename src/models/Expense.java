@@ -1,46 +1,68 @@
 package models;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Expense {
     private final String expenseId;
-    private final Double totalAmount;
-    private final User paidBy;
-    private final Group group;
-    private final List<Split> splits;
-    private final LocalDateTime createdAt;
+    private final String description;
+    private final Double amount;
+    private final String paidBy;
+    private final String groupId;
+    private final Date createdAt;
+    private final Map<String, Double> splits;
 
-    public Expense(String expenseId, Double totalAmount, User paidBy, Group group, List<Split> splits) {
+    public Expense(String expenseId, String description, Double amount, String paidBy, String groupId, Map<String, Double> splits) {
         this.expenseId = expenseId;
-        this.totalAmount = totalAmount;
+        this.description = description;
+        this.amount = amount;
         this.paidBy = paidBy;
-        this.group = group;
-        this.splits = splits;
-        this.createdAt = LocalDateTime.now();
+        this.groupId = groupId;
+        this.splits = new HashMap<>(splits);
+        this.createdAt = new Date();
     }
 
     public String getExpenseId() {
         return expenseId;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public String getDescription() {
+        return description;
     }
 
-    public List<Split> getSplits() {
-        return splits;
+    public Double getAmount() {
+        return amount;
     }
 
-    public Group getGroup() {
-        return group;
-    }
-
-    public User getPaidBy() {
+    public String getPaidBy() {
         return paidBy;
     }
 
-    public Double getTotalAmount() {
-        return totalAmount;
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Map<String, Double> getSplits() {
+        return splits;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "expenseId='" + expenseId + '\'' +
+                ", description='" + description + '\'' +
+                ", amount=" + amount +
+                ", paidBy='" + paidBy + '\'' +
+                ", groupId='" + groupId + '\'' +
+                ", createdAt=" + createdAt +
+                ", splits=" + splits +
+                '}';
     }
 }

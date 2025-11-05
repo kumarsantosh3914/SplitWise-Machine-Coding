@@ -3,46 +3,41 @@ package models;
 import java.time.LocalDateTime;
 
 public class Transaction {
-    private final User from;
-    private final User to;
-    private final Double amount;
-    private final Group grop;
-    private final LocalDateTime timestamp;
+    private final User fromUserId;
+    private final User toUserId;
+    private final double amount;
+    private final String groupId;
 
-    public Transaction(User from, User to, Double amount, Group grop, LocalDateTime timestamp) {
-        this.from = from;
-        this.to = to;
+    public Transaction(User from, User to, Double amount, String groupId) {
+        this.fromUserId = from;
+        this.toUserId = to;
         this.amount = amount;
-        this.grop = grop;
-        this.timestamp = LocalDateTime.now();
+        this.groupId = groupId;
     }
 
-    public User getFrom() {
-        return from;
+    public User getFromUserId() {
+        return fromUserId;
     }
 
-    public User getTo() {
-        return to;
+    public User getToUserId() {
+        return toUserId;
     }
 
-    public Double getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public Group getGrop() {
-        return grop;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public String getGroupId() {
+        return groupId;
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
-                "from=" + from +
-                ", to=" + to +
+                "fromUserId=" + fromUserId +
+                ", toUserId=" + toUserId +
                 ", amount=" + amount +
+                ", groupId='" + groupId + '\'' +
                 '}';
     }
 }
