@@ -1,10 +1,7 @@
 package models;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Expense {
     private final String expenseId;
@@ -15,8 +12,8 @@ public class Expense {
     private final Date createdAt;
     private final Map<String, Double> splits;
 
-    public Expense(String expenseId, String description, Double amount, String paidBy, String groupId, Map<String, Double> splits) {
-        this.expenseId = expenseId;
+    public Expense(String description, Double amount, String paidBy, String groupId, Map<String, Double> splits) {
+        this.expenseId = UUID.randomUUID().toString();
         this.description = description;
         this.amount = amount;
         this.paidBy = paidBy;

@@ -18,7 +18,7 @@ public class GroupRepository {
         return group;
     }
 
-    public Optional<Group> getGroup(String id) {
+    public Optional<Group> findById(String id) {
         return Optional.ofNullable(groups.get(id));
     }
 

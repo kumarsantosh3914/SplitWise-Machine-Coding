@@ -26,6 +26,12 @@ public class ExpenseRepository {
         return new ArrayList<>(expenses.values());
     }
 
+    public List<Expense> findByGroupId(String groupId) {
+        return expenses.values().stream()
+                .filter(expense -> expense.getGroupId().equals(groupId))
+                .collect(Collectors.toList());
+    }
+
     public List<Expense> findByUserId(String userId) {
         return expenses.values().stream()
                 .filter(expense -> expense.getPaidBy().equals(userId) ||
